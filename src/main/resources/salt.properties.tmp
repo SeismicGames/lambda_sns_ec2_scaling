@@ -1,0 +1,5 @@
+ec2.username=
+ec2.password=
+
+salt.master.minion=
+salt.url=

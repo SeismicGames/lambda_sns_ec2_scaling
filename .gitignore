@@ -1,0 +1,7 @@
+.idea/
+lambda_sns_ec2_scaling.iml
+target/
+.DS_Store
+src/main/resources/ec2.properties
+src/main/resources/salt.properties
+src/main/resources/slack.properties

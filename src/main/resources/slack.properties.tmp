@@ -1,0 +1,4 @@
+slack.api_key=
+slack.url=https://slack.com/api/chat.postMessage
+slack.channel=
+slack.username=
