@@ -114,4 +114,72 @@ To see the output, go to 'Lambda -> ec2-sns-scaling-event -> Monitoring' and cli
 
 ## Customize the event handler<a name="customize_event"></a>
 
+I've included the class SaltEC2InstanceImpl as an example event handler, one that sends events to the Salt Master once an EC2 instance starts or stops. But you can add your own event handler.
+
+1. Implement the class `EC2Instance` in your event class.
+
+```java
+package com.gruegames.lambda_sns_ec2_scaling.ec2.example;
+
+import com.gruegames.lambda_sns_ec2_scaling.ec2.EC2Instance;
+
+public class EventExampleImpl implements EC2Instance {
+    @Override
+    public void create(String instanceId, String availabilityZone) {
+
+    }
+
+    @Override
+    public void terminate(String instanceId, String availabilityZone) {
+
+    }
+
+    /* This method determines if terminate above is called when an instance fails to terminate */
+    @Override
+    public boolean processTerminateOnFail() {
+        return false;
+    }
+}
+```
+
+2. Register the new class in `LambdaFunction.registerEC2Instances`
+
+```java
+    private void registerEC2Instances()
+    {
+        EC2InstanceHandler.register(SaltEC2InstanceImpl.class);
+        /* ... */
+        EC2InstanceHandler.register(EventExampleImpl.class);
+    }
+````
+
 ## Customize the alarm handler<a name="customize_alarm"></a>
+
+The alert handler work just like the event handler.
+
+1. Implement the class `Alert` in your event class.
+
+```java
+package com.gruegames.lambda_sns_ec2_scaling.alerts.example;
+
+import com.gruegames.lambda_sns_ec2_scaling.alerts.Alert;
+import org.apache.log4j.Level;
+
+public class AlertExampleImpl implements Alert {
+    @Override
+    public void sendAlert(Level level, String instanceId, String error) {
+        
+    }
+}
+```
+
+2. Register the new class in `LambdaFunction.registerAlerts`
+
+```java
+    private void registerAlerts()
+    {
+        AlertHandler.register(SlackAlertImpl.class);
+        /* ... */
+        AlertHandler.register(AlertExampleImpl.class);
+    }
+```
