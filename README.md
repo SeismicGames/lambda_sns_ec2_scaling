@@ -3,7 +3,7 @@ Java application to handle ASG scaling events through SNS/Lambda
 
 ## What it does
 
-While AWS auto scaling groups (ASG) are fantastic, there is event system in AWS to handle the scaling up or down of ASG. This means you would have to manage all instance changes between AWS and your own management infrastructure.
+While AWS auto scaling groups (ASG) are fantastic, there is no event system in AWS to handle the scaling up or down of ASG. This means you would have to manage all instance changes between AWS and your own management infrastructure.
 
 What AWS does give you, however, is a way to fire a push notification to a Lambda event. It's up to you to figure out what do to with that event once it's fired. 
  
