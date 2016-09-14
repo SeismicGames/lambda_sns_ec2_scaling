@@ -27,7 +27,7 @@ This code is a simple Java application to help you handle those events. The curr
  ```
 
 3. Copy `src/main/resources/salt.properties.tmp` to `src/main/resources/salt.properties` and enter your Salt/EC2 user access information.
- 
+
  ```
  ec2.username=<valid_ec2_username>
  ec2.password=<valid_ec2_password>
@@ -98,7 +98,7 @@ To see the output, go to 'Lambda -> ec2-sns-scaling-event -> Monitoring' and cli
 I've included the class SaltEC2InstanceImpl as an example event handler, one that sends events to the Salt Master once an EC2 instance starts or stops. But you can add your own event handler.
 
 1. Implement the class `EC2Instance` in your event class.
- 
+
  ```java
  package com.gruegames.lambda_sns_ec2_scaling.ec2.example;
  
@@ -124,7 +124,7 @@ I've included the class SaltEC2InstanceImpl as an example event handler, one tha
  ```
 
 2. Register the new class in `LambdaFunction.registerEC2Instances`
- 
+
  ```java
      private void registerEC2Instances()
      {
@@ -139,7 +139,7 @@ I've included the class SaltEC2InstanceImpl as an example event handler, one tha
 The alert handler work just like the event handler.
 
 1. Implement the class `Alert` in your event class.
- 
+
  ```java
  package com.gruegames.lambda_sns_ec2_scaling.alerts.example;
  
